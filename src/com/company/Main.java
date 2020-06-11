@@ -1,5 +1,8 @@
 package com.company;
 
+import java.util.Random;
+import java.util.Scanner;
+
 /**
  * Class Main
  * This class is a container for a Hello-World program.
@@ -40,6 +43,10 @@ public class Main { // The name of the class is Main.
         // The modulus operator for finding the remainder
         System.out.println(12 % 3);
 
+        // Math library
+        System.out.println(Math.sqrt(16));
+        System.out.println(Math.E);
+
         System.out.println(true && false); // and
         System.out.println(true || false); // or
         System.out.println(!true); // not
@@ -67,11 +74,18 @@ public class Main { // The name of the class is Main.
 
         int a; // Variable declaration
         a = 1234; // Variable initialization
+        // We can increment a by 1 using a++.
+        a++;
+        System.out.println(a);
 
         // We can also do "inline initialization":'
         int c = 1234;
         int d = 99;
         int sum = c + d;
+
+        // We can decrement c by 1 using c--.
+        c--;
+        System.out.println(c);
 
         // We can declare multiple variables on one line.
         int i, j;
@@ -85,10 +99,47 @@ public class Main { // The name of the class is Main.
         // Here are inline initializations for non-integers:
         boolean classOver = false;
         double hourlyPayRate = 15.5;
-        String name = "Katie";
         char firstInitial = 'T';
 
         System.out.println(firstInitial);
+
+        // Generate one of 10 random integers 0-9 inclusive.
+        Random rand = new Random();
+        int num = rand.nextInt(10);
+        System.out.println(num);
+
+        // String declaration
+        String name;
+        // String initialization
+        name = "Laura";
+        System.out.println(name);
+
+        // String inline initialization
+        String name2 = "Katie";
+        System.out.println(name2);
+
+        // Inline string declaration "long form"
+        String name3 = new String("Thomas");
+        System.out.println(name3);
+
+        String name4 = new String("Katie");
+
+        // Calling a string method on a String object
+        System.out.println(name3.toLowerCase());
+
+        System.out.println(name2);
+        System.out.println(name4);
+
+        // Use the String method equals
+        System.out.println(name4.equals(name2));
+        // Do not use == for Strings (or any other objects)
+        System.out.println(name4 == name2);
+
+        // User input
+        Scanner keyboard = new Scanner(System.in);
+        System.out.print("Enter your name: ");
+        String userText = keyboard.nextLine();
+        System.out.println(userText);
 
         // We can call a static method that we write ourselves.
         System.out.println(getPay(40, 15));
