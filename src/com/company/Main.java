@@ -16,6 +16,16 @@ import java.util.Scanner;
 public class Main { // The name of the class is Main.
     // The keyword "public" is called an "access modifier."
     // In Java, we use a capitalized name for a class (e.g., Main).
+    // **A Java program must have at least one class definition!**
+    // A .java file can have many classes but only one public class.
+
+    // These are class variables.  (See static method getPay.)
+    public static double taxRateBracket01 = 0.1;
+    public static double taxRateBracket02 = 0.12;
+
+    // These are class constants:
+    public static final double TAX_RATE_BRACKET01 = 0.1;
+    public static final double TAX_RATE_BRACKET02 = 0.12;
 
     // In Python you wrote functions.  In Java we talk about "static methods".
     // The following line is called a "method header":
@@ -77,6 +87,8 @@ public class Main { // The name of the class is Main.
         // We can increment a by 1 using a++.
         a++;
         System.out.println(a);
+        a += 1;
+        System.out.println(a);
 
         // We can also do "inline initialization":'
         int c = 1234;
@@ -91,6 +103,11 @@ public class Main { // The name of the class is Main.
         int i, j;
         i = 1234;
         j = 99;
+
+        int b = 10;
+        System.out.println(b++);
+        System.out.println(b);
+        System.out.println(++b);
 
         // We can do multiple inline initializations on one line.
         int k = 1234, L = 99;
@@ -142,7 +159,7 @@ public class Main { // The name of the class is Main.
         System.out.println(userText);
 
         // We can call a static method that we write ourselves.
-        System.out.println(getPay(40, 15));
+        getPay(10, 10);
     }
 
     /**
@@ -154,7 +171,38 @@ public class Main { // The name of the class is Main.
     // Note the syntax of the method header.
     // Include the type of the returned value in the header.
     // If no value is returned, use "void" instead. (See main method header.)
-    public static double getPay(double hours, double payRate) {
-        return hours * payRate;
+    public static void getPay(double hours, double payRate) {
+
+        if (hours < 0){
+            throw new IllegalArgumentException("Hours must be non-negative.");
+        }
+        if (payRate <= 12){
+            throw new IllegalArgumentException("Pay rate must be at least $12/hour.");
+        }
+        /* Variables are local to the method in which they are defined
+         * as in Python.
+         * If we need a variable accessible to all the methods in a class,
+         * for example, both main and getPay, then we can define a
+         * *class* variable at the top of the class body.
+         * In general, you should avoid using such global variables.
+         * Instead, pass values as parameters to other methods as in Python.
+         * An exception to this rule is class CONSTANTS.
+         */
+        double annualIncome = 9600;
+        double taxRate;
+
+        if (annualIncome <= 9700) {
+            taxRate = TAX_RATE_BRACKET01;
+        }
+        else {
+            taxRate = TAX_RATE_BRACKET02;
+        }
+
+        // There is a shorthand for if-else in this situation.
+        double taxRate2;
+        taxRate2 = annualIncome <= 9700 ? TAX_RATE_BRACKET01 : TAX_RATE_BRACKET02;
+
+        System.out.println("Your pay is "+ hours * payRate);
+        System.out.println("Your taxes are "+ hours * payRate * taxRate2);
     }
 }
